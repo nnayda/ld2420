@@ -109,7 +109,7 @@ async def to_code(config):
     if CONF_MOVING_DISTANCE in config:
         sens = await sensor.new_sensor(config[CONF_MOVING_DISTANCE])
         cg.add(var.set_distance_sensor(sens))
-    for idx,CONF_GATE_ENERGY in enumerate(CONF_GATES()):
+    for idx,CONF_GATE_ENERGY in enumerate(CONF_GATES):
         if CONF_GATE_ENERGY in config:
             sens = await sensor.new_sensor(config[CONF_GATE_ENERGY])
             cg.add(var.set_energy_sensor(sens,idx))
