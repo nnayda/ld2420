@@ -10,6 +10,7 @@ class LD2420Sensor : public LD2420Listener, public Component, sensor::Sensor {
  public:
   void dump_config() override;
   void set_distance_sensor(sensor::Sensor *sensor) { this->distance_sensor_ = sensor; }
+  void set_energy_sensor(std::vector<sensor::Sensor *> sensors) { this->energy_sensors_ = sensors; }
   void on_distance(uint16_t distance) override {
     if (this->distance_sensor_ != nullptr) {
       if (this->distance_sensor_->get_state() != distance) {

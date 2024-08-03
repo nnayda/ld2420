@@ -32,7 +32,10 @@ async def to_code(config):
         sens = await sensor.new_sensor(config[CONF_MOVING_DISTANCE])
         cg.add(var.set_distance_sensor(sens))
     if CONF_GATE_ENERGY in config:
-        sens = await sensor.new_sensor(config[CONF_GATE_ENERGY])
-        cg.add(var.set_energy_sensor(sens))
+        senss = []
+        for i in range(16):
+            sens = await sensor.new_sensor(config[CONF_GATE_ENERGY])
+            senss.append(sens)
+        cg.add(var.set_energy_sensor(senss))
     ld2420 = await cg.get_variable(config[CONF_LD2420_ID])
     cg.add(ld2420.register_listener(var))
