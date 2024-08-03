@@ -1,7 +1,7 @@
 import esphome.codegen as cg
 import esphome.config_validation as cv
 from esphome.components import sensor
-from esphome.const import CONF_ID, DEVICE_CLASS_DISTANCE, UNIT_CENTIMETER
+from esphome.const import CONF_ID, DEVICE_CLASS_DISTANCE, UNIT_CENTIMETER,UNIT_WATT,DEVICE_CLASS_ENERGY
 from .. import ld2420_ns, LD2420Component, CONF_LD2420_ID
 
 LD2420Sensor = ld2420_ns.class_("LD2420Sensor", sensor.Sensor, cg.Component)
@@ -16,6 +16,9 @@ CONFIG_SCHEMA = cv.All(
             cv.GenerateID(CONF_LD2420_ID): cv.use_id(LD2420Component),
             cv.Optional(CONF_MOVING_DISTANCE): sensor.sensor_schema(
                 device_class=DEVICE_CLASS_DISTANCE, unit_of_measurement=UNIT_CENTIMETER
+            ),
+            cv.Optional(CONF_GATE_ENERGY): sensor.sensor_schema(
+                device_class=DEVICE_CLASS_ENERGY, unit_of_measurement=UNIT_WATT
             ),
         }
     ),
